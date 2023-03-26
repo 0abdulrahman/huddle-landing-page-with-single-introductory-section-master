@@ -1,0 +1,156 @@
+@use "../variables/colors" as *;
+@use "../variables/media" as *;
+@use "../variables/font" as *;
+@use "../helpers/mixins" as *;
+
+body {
+  min-height: 100vh;
+  font-size: $font-size;
+  padding: 5rem;
+  @include center;
+  flex-direction: column;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url("../images/bg-desktop.svg") top/cover no-repeat $violet;
+    z-index: -1;
+  }
+  header {
+    width: 100%;
+    margin-bottom: 5rem;
+    img {
+      height: 50px;
+    }
+  }
+  main {
+    width: 100%;
+    margin-bottom: 5em;
+    @include center;
+    gap: 50px;
+    color: $white;
+    h1 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    .img {
+      max-width: 700px;
+      min-width: 400px;
+      img {
+        width: 100%;
+      }
+    }
+    section {
+      max-width: 510px;
+      h2 {
+        font-size: calc($font-size + 1.5em);
+        margin-bottom: 0.5em;
+      }
+      p {
+        font: {
+          size: calc($font-size + 2px);
+          family: $font_2;
+        }
+        line-height: 1.5;
+        color: $transperant_gray;
+        margin-bottom: 1.5em;
+      }
+      button {
+        border: none;
+        border-radius: 50px;
+        padding: 0.75em 4em;
+        background-color: $white;
+        color: $violet;
+        box-shadow: 0 10px 10px $regular_shadow;
+        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        font: {
+          family: $font;
+          size: $font-size;
+        }
+        cursor: pointer;
+        &:hover {
+          background-color: $soft_magenta;
+          color: $white;
+          box-shadow: 0 5px 10px $regular_shadow;
+        }
+      }
+    }
+  }
+  .socials {
+    position: absolute;
+    bottom: 40px;
+    right: 80px;
+    @include flex-sb;
+    gap: 20px;
+    a {
+      border-radius: 50%;
+      border: 1px solid $white;
+      height: 40px;
+      width: 40px;
+      @include center;
+      color: $white;
+      transition: border-color 0.2s, color 0.2s;
+      &:nth-of-type(3) {
+        font-size: calc($font-size + 0.25em);
+      }
+      &:hover {
+        border-color: $magenta;
+        color: $magenta;
+      }
+    }
+  }
+  @include media("mobile") {
+    padding: 4em 2.5em;
+    &:before {
+      background: url("../images/bg-mobile.svg") top/contain no-repeat $violet;
+    }
+    header {
+      img {
+        height: 30px;
+      }
+      margin-bottom: 3rem;
+    }
+    main {
+      flex-direction: column;
+      .img {
+        min-width: auto;
+      }
+      section {
+        text-align: center;
+        h2 {
+          font-size: calc($font-size + 0.5em);
+        }
+        p {
+          font-size: $font-size;
+        }
+        button {
+          padding: 0.75em 5em;
+          font-size: calc($font-size - 2px);
+        }
+      }
+      .socials {
+        right: 50%;
+        transform: translateX(50%);
+        a {
+          height: 35px;
+          width: 35px;
+          font-size: 15px;
+          &:nth-of-type(3) {
+            font-size: $font-size;
+          }
+        }
+      }
+    }
+  }
+}
